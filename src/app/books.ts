@@ -434,7 +434,7 @@ export const books: Book[] = [
       "Takako is back in Jimbocho. Her aunt has stories. The bookshop, as always, holds everyone gently in place.",
     whenRead: "Adult",
     coverUrl:
-      "https://images-na.ssl-images-amazon.com/images/P/1800815697.01.LZZZZZZZ.jpg",
+      "https://images-na.ssl-images-amazon.com/images/P/0063278715.01.LZZZZZZZ.jpg",
   },
   {
     title: "A Good Girl's Guide to Murder",
