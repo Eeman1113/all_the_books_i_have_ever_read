@@ -256,6 +256,8 @@ export const books: Book[] = [
       "A road trip in an RV, a campground full of weather, and Greg trapped with his entire family. As nature intended.",
     whenRead: "Kid",
     query: "Diary of a Wimpy Kid The Deep End",
+    coverUrl:
+      "https://images-na.ssl-images-amazon.com/images/P/1419748688.01.LZZZZZZZ.jpg",
   },
   {
     title: "Big Shot",
@@ -288,6 +290,8 @@ export const books: Book[] = [
       "Both sides of the Heffley extended family converge for one chaotic weekend. Greg gets a front-row seat.",
     whenRead: "Kid",
     query: "Diary of a Wimpy Kid Hot Mess",
+    coverUrl:
+      "https://images-na.ssl-images-amazon.com/images/P/1419766945.01.LZZZZZZZ.jpg",
   },
   {
     title: "Partypooper",
@@ -369,6 +373,8 @@ export const books: Book[] = [
     synopsis:
       "A bored housewife reads a manuscript about Rumi and Shams of Tabriz — and slowly her life starts to follow the rules in the book.",
     whenRead: "Adult",
+    coverUrl:
+      "https://images-na.ssl-images-amazon.com/images/P/0143118528.01.LZZZZZZZ.jpg",
   },
   {
     title: "Twilight",
@@ -411,6 +417,8 @@ export const books: Book[] = [
     synopsis:
       "A shepherd boy follows a recurring dream from Spain to the pyramids of Egypt and learns the universe's least subtle lesson on purpose.",
     whenRead: "Adult",
+    coverUrl:
+      "https://images-na.ssl-images-amazon.com/images/P/0062315005.01.LZZZZZZZ.jpg",
   },
   {
     title: "Days at the Morisaki Bookshop",
@@ -425,6 +433,8 @@ export const books: Book[] = [
     synopsis:
       "Takako is back in Jimbocho. Her aunt has stories. The bookshop, as always, holds everyone gently in place.",
     whenRead: "Adult",
+    coverUrl:
+      "https://images-na.ssl-images-amazon.com/images/P/1800815697.01.LZZZZZZZ.jpg",
   },
   {
     title: "A Good Girl's Guide to Murder",
@@ -432,6 +442,8 @@ export const books: Book[] = [
     synopsis:
       "Pip's senior capstone project is reopening a small-town murder case everyone agrees was solved. They are wrong, and her town gets nervous.",
     whenRead: "Teen",
+    coverUrl:
+      "https://images-na.ssl-images-amazon.com/images/P/1984896393.01.LZZZZZZZ.jpg",
   },
   {
     title: "Shatter Me",
@@ -513,6 +525,8 @@ export const books: Book[] = [
     synopsis:
       "A by-the-book caseworker is sent to evaluate an orphanage of six magical, possibly apocalyptic children. He stays for the lighthouse keeper.",
     whenRead: "Adult",
+    coverUrl:
+      "https://images-na.ssl-images-amazon.com/images/P/1250217288.01.LZZZZZZZ.jpg",
   },
   {
     title: "Somewhere Beyond the Sea",
@@ -520,6 +534,8 @@ export const books: Book[] = [
     synopsis:
       "Arthur Parnassus tells his side now — the boy who became a phoenix and the man who decided this island would be a sanctuary.",
     whenRead: "Adult",
+    coverUrl:
+      "https://images-na.ssl-images-amazon.com/images/P/1250217342.01.LZZZZZZZ.jpg",
   },
   {
     title: "Romeo and Juliet",
@@ -578,6 +594,8 @@ export const books: Book[] = [
     synopsis:
       "A grumpy Swedish widower is interrupted on the way to his own funeral by a pregnant Iranian neighbour with a bad-parking husband.",
     whenRead: "Adult",
+    coverUrl:
+      "https://images-na.ssl-images-amazon.com/images/P/1476738025.01.LZZZZZZZ.jpg",
   },
   {
     title: "Project Hail Mary",
