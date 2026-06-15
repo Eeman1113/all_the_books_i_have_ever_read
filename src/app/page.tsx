@@ -80,7 +80,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="mx-auto w-full max-w-6xl px-5 sm:px-10 pt-14 sm:pt-28 pb-20 sm:pb-36">
+      <main className="mx-auto w-full max-w-6xl px-5 sm:px-10 pt-14 sm:pt-28 pb-6 sm:pb-10">
         <header ref={headerRef} className="flex flex-col items-center text-center">
           <h1 className="font-ole text-[var(--foreground)] leading-[1.05] text-[2.2rem] sm:text-[4.2rem] md:text-[5rem] tracking-tight select-none">
             {TITLE.split("").map((c, i) => {
@@ -120,7 +120,7 @@ export default function Home() {
           ))}
         </section>
 
-        <div className="mt-24 sm:mt-36 flex justify-center select-none pointer-events-none">
+        <div className="mt-16 sm:mt-24 flex justify-center select-none pointer-events-none">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="portal.png"
