@@ -120,7 +120,7 @@ export default function Home() {
           ))}
         </section>
 
-        <div className="mt-16 sm:mt-24 flex justify-center select-none pointer-events-none">
+        <div className="mt-8 sm:mt-12 flex justify-center select-none pointer-events-none">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="portal.png"
