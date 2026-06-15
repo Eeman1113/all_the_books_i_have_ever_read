@@ -560,6 +560,8 @@ export const books: Book[] = [
     synopsis:
       "A Bengali novel of memory and motherhood — letters and silences from a woman to the child she could not raise.",
     whenRead: "Adult",
+    coverUrl:
+      "https://cdn.jsdelivr.net/gh/Eeman1113/all_the_books_i_have_ever_read@main/public/covers/etee-tomar-maa.webp",
   },
   {
     title: "Mahagatha",
