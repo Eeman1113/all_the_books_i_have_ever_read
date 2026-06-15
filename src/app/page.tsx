@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { books } from "./books";
 import BookCard from "./BookCard";
-import Loader from "./Loader";
 
 export default function Home() {
   const headerRef = useRef<HTMLElement>(null);
@@ -13,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!headerRef.current) return;
-    const tl = gsap.timeline({ delay: 1.6 });
+    const tl = gsap.timeline();
     tl.from(headerRef.current, {
       autoAlpha: 0,
       y: 24,
@@ -45,7 +44,6 @@ export default function Home() {
 
   return (
     <>
-      <Loader />
       <main className="mx-auto w-full max-w-6xl px-5 sm:px-8 pt-16 sm:pt-24 pb-24">
         <header ref={headerRef} className="flex flex-col items-center text-center">
           <h1 className="font-ole text-[var(--foreground)] leading-[1.05] text-[2.6rem] sm:text-[4.2rem] md:text-[5rem] tracking-tight">
