@@ -360,6 +360,8 @@ export const books: Book[] = [
     synopsis:
       "A twelve-year on-and-off relationship told in messy, real-time pieces — friendship, distance, jealousy, and the long tail of first love.",
     whenRead: "Adult",
+    coverUrl:
+      "https://images-na.ssl-images-amazon.com/images/P/9369896872.01.LZZZZZZZ.jpg",
   },
   {
     title: "The Forty Rules of Love",
