@@ -300,6 +300,7 @@ export const books: Book[] = [
       "Greg is older now but the parties keep finding him. The latest Wimpy Kid — read as an adult, hits different.",
     whenRead: "Adult",
     query: "Diary of a Wimpy Kid Partypooper",
+    coverUrl: "covers/partypooper.webp",
   },
   {
     title: "Tom Gates Series",
