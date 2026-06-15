@@ -12,6 +12,15 @@ function coverFor(book: Book): string | null {
   return coverMap[`${book.title}|${book.author ?? ""}`] ?? null;
 }
 
+type AgeCategory = "Kid" | "Teen" | "Adult";
+
+function ageCategory(whenRead: string): AgeCategory {
+  const w = whenRead.toLowerCase();
+  if (/adult|college/.test(w)) return "Adult";
+  if (/teen|adolescent|\b16\b/.test(w)) return "Teen";
+  return "Kid";
+}
+
 export default function BookCard({
   book,
   priority = false,
@@ -110,8 +119,11 @@ export default function BookCard({
         <p className="mt-5 sm:mt-6 text-[0.92rem] sm:text-[0.95rem] leading-[1.7] text-[var(--foreground)]/85">
           {book.synopsis}
         </p>
-        <div className="mt-auto pt-7 sm:pt-8">
-          <Button variant="secondary">{book.whenRead}</Button>
+        <div className="mt-auto pt-7 sm:pt-8 flex flex-col items-start gap-2">
+          <span className="font-sans font-bold text-[0.78rem] sm:text-[0.8rem] text-[var(--foreground)] tracking-tight">
+            I read this book when I was:
+          </span>
+          <Button variant="secondary">{ageCategory(book.whenRead)}</Button>
         </div>
       </div>
     </article>
