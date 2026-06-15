@@ -4,47 +4,15 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { books } from "./books";
 import BookCard from "./BookCard";
+import { HoverText } from "@/components/HoverText";
 
 const TITLE = "all the books i have ever read";
-
-// Whimsical, candy-bright palette
-const SPLASH_PALETTE = [
-  "#FF3D8B", // hot pink
-  "#FF7A1A", // tangerine
-  "#FFD000", // sunshine yellow
-  "#3BD160", // grass green
-  "#1E9CFF", // cobalt sky
-  "#8E2BFF", // grape
-  "#FF4E4E", // coral red
-  "#0AC8C8", // turquoise
-  "#FF2EA8", // bubblegum
-  "#16D88B", // mint
-  "#FF9B2B", // peach orange
-  "#B14BFF", // lavender pop
-  "#FF1E5A", // raspberry
-  "#22D3EE", // electric aqua
-];
-
-function pickColour() {
-  return SPLASH_PALETTE[Math.floor(Math.random() * SPLASH_PALETTE.length)];
-}
+const SUBTITLE = "(at least the ones i can remember)";
 
 export default function Home() {
   const headerRef = useRef<HTMLElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-
-  const splashLetter = (e: React.MouseEvent<HTMLSpanElement>) => {
-    const el = e.currentTarget;
-    el.style.transition = "none";
-    el.style.color = pickColour();
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        el.style.transition = "color 1.6s ease-out";
-        el.style.color = "";
-      });
-    });
-  };
 
   useEffect(() => {
     if (!headerRef.current) return;
@@ -83,27 +51,13 @@ export default function Home() {
       <main className="mx-auto w-full max-w-6xl px-5 sm:px-10 pt-14 sm:pt-28 pb-0">
         <header ref={headerRef} className="flex flex-col items-center text-center">
           <h1 className="font-ole text-[var(--foreground)] leading-[1.05] text-[2.2rem] sm:text-[4.2rem] md:text-[5rem] tracking-tight select-none">
-            {TITLE.split("").map((c, i) => {
-              const isSpace = c === " ";
-              return (
-                <span
-                  key={i}
-                  onMouseEnter={isSpace ? undefined : splashLetter}
-                  style={{
-                    transition: "color 1.6s ease-out",
-                    display: "inline-block",
-                  }}
-                >
-                  {isSpace ? " " : c}
-                </span>
-              );
-            })}
+            <HoverText>{TITLE}</HoverText>
           </h1>
           <p
             ref={subRef}
             className="mt-3 sm:mt-4 max-w-2xl font-sans text-[var(--muted)] text-sm sm:text-lg italic px-4"
           >
-            (at least the ones i can remember)
+            <HoverText>{SUBTITLE}</HoverText>
           </p>
         </header>
 

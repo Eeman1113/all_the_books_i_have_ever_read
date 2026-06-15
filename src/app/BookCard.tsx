@@ -5,6 +5,7 @@ import gsap from "gsap";
 import type { Book } from "./books";
 import covers from "./covers.json";
 import { Badge } from "@/components/ui/badge";
+import { HoverText } from "@/components/HoverText";
 
 const coverMap = covers as Record<string, string | null>;
 
@@ -205,19 +206,19 @@ export default function BookCard({
 
       <div className="flex flex-col min-w-0 flex-1 w-full">
         <h3 className="font-sans text-[1.15rem] sm:text-[1.2rem] font-semibold tracking-tight text-[var(--foreground)] leading-snug">
-          {book.title}
+          <HoverText>{book.title}</HoverText>
         </h3>
         {book.author && (
           <p className="mt-1.5 text-[0.74rem] sm:text-[0.82rem] text-[var(--muted)] font-medium tracking-wide uppercase">
-            {book.author}
+            <HoverText>{book.author}</HoverText>
           </p>
         )}
         <p className="mt-4 sm:mt-6 text-[0.94rem] sm:text-[0.95rem] leading-[1.65] sm:leading-[1.7] text-[var(--foreground)]/85">
-          {book.synopsis}
+          <HoverText>{book.synopsis}</HoverText>
         </p>
         <div className="mt-6 sm:mt-auto sm:pt-8 flex items-center gap-2 whitespace-nowrap">
           <span className="font-sans font-bold text-xs sm:text-sm text-[var(--foreground)] tracking-tight">
-            I read this book when I was:
+            <HoverText>I read this book when I was:</HoverText>
           </span>
           <Badge
             variant="secondary"
@@ -228,7 +229,7 @@ export default function BookCard({
               padding: "0.3rem 0.75rem",
             }}
           >
-            {cat}
+            <HoverText>{cat}</HoverText>
           </Badge>
         </div>
       </div>
