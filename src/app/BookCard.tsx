@@ -84,11 +84,9 @@ export default function BookCard({ book }: { book: Book }) {
 
     const onEnter = () => {
       gsap.to(card, {
-        y: -6,
+        y: -4,
         duration: 0.55,
         ease: "power3.out",
-        boxShadow:
-          "0 30px 60px -20px rgba(80, 60, 30, 0.35), 0 12px 24px -12px rgba(80, 60, 30, 0.25)",
       });
       gsap.to(cover, {
         scale: 1.04,
@@ -102,8 +100,6 @@ export default function BookCard({ book }: { book: Book }) {
         y: 0,
         duration: 0.6,
         ease: "power3.out",
-        boxShadow:
-          "0 2px 6px rgba(80, 60, 30, 0.08), 0 1px 2px rgba(80, 60, 30, 0.05)",
       });
       gsap.to(cover, {
         scale: 1,
@@ -124,18 +120,13 @@ export default function BookCard({ book }: { book: Book }) {
   return (
     <article
       ref={cardRef}
-      className="group flex gap-5 sm:gap-6 p-5 sm:p-6 rounded-2xl bg-[var(--card)] border border-[color:var(--border)]/60 will-change-transform"
-      style={{
-        boxShadow:
-          "0 2px 6px rgba(80, 60, 30, 0.08), 0 1px 2px rgba(80, 60, 30, 0.05)",
-      }}
+      className="group flex gap-5 sm:gap-6 will-change-transform"
     >
       <div
         ref={imgWrapRef}
-        className="relative shrink-0 w-[120px] sm:w-[140px] aspect-[2/3] overflow-hidden rounded-md"
+        className="relative shrink-0 w-[120px] sm:w-[140px] aspect-[2/3] overflow-hidden"
         style={{
-          boxShadow:
-            "0 14px 24px -12px rgba(60, 45, 25, 0.45), inset 0 0 0 1px rgba(60, 45, 25, 0.08)",
+          boxShadow: "0 14px 24px -12px rgba(60, 45, 25, 0.45)",
         }}
       >
         <div
@@ -157,7 +148,7 @@ export default function BookCard({ book }: { book: Book }) {
           ) : null}
           {(!coverUrl || !loaded || errored) && (
             <div className="absolute inset-0 book-cover-skel flex items-end p-3">
-              <span className="font-ole text-[var(--foreground)]/70 text-lg leading-tight">
+              <span className="font-ole text-[var(--foreground)]/70 text-base leading-tight">
                 {errored || coverUrl === null ? book.title : ""}
               </span>
             </div>
