@@ -7,24 +7,26 @@ import BookCard from "./BookCard";
 
 const TITLE = "all the books i have ever read";
 
-// Zen-pastel Japanese palette — sakura, matcha, fuji, asagi, kaki, etc.
-const ZEN_PALETTE = [
-  "#F8BBD0", // sakura — cherry blossom pink
-  "#A5D6A7", // matcha — soft green
-  "#9FB7DE", // ai — indigo
-  "#FFAB91", // kaki — persimmon
-  "#CE93D8", // sumire — violet
-  "#FFE082", // yamabuki — soft gold
-  "#B2EBF2", // asagi — pale blue
-  "#D7CCC8", // shiratake — pale brown
-  "#C5E1A5", // moegi — young green
-  "#D1C4E9", // fuji — wisteria
-  "#F48FB1", // momo — peach
-  "#BCAAA4", // cha — tea
+// Whimsical, candy-bright palette
+const SPLASH_PALETTE = [
+  "#FF3D8B", // hot pink
+  "#FF7A1A", // tangerine
+  "#FFD000", // sunshine yellow
+  "#3BD160", // grass green
+  "#1E9CFF", // cobalt sky
+  "#8E2BFF", // grape
+  "#FF4E4E", // coral red
+  "#0AC8C8", // turquoise
+  "#FF2EA8", // bubblegum
+  "#16D88B", // mint
+  "#FF9B2B", // peach orange
+  "#B14BFF", // lavender pop
+  "#FF1E5A", // raspberry
+  "#22D3EE", // electric aqua
 ];
 
 function pickColour() {
-  return ZEN_PALETTE[Math.floor(Math.random() * ZEN_PALETTE.length)];
+  return SPLASH_PALETTE[Math.floor(Math.random() * SPLASH_PALETTE.length)];
 }
 
 export default function Home() {
