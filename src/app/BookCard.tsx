@@ -125,6 +125,16 @@ export default function BookCard({
   };
 
   useEffect(() => {
+    // SSR/hydration race: the <img> is inline in the static HTML, so the
+    // browser decodes it during HTML parse and fires `load` before React
+    // hydrates and attaches our onLoad listener. Check `complete` once on
+    // mount and flip loaded ourselves.
+    if (
+      imgRef.current?.complete &&
+      imgRef.current.naturalWidth > 0
+    ) {
+      setLoaded(true);
+    }
     return () => {
       if (cardRef.current) gsap.killTweensOf(cardRef.current);
       if (coverRef.current) gsap.killTweensOf(coverRef.current);
