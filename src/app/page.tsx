@@ -61,8 +61,12 @@ export default function Home() {
           ref={gridRef}
           className="mt-14 sm:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7"
         >
-          {books.map((b) => (
-            <BookCard key={`${b.title}-${b.author ?? ""}`} book={b} />
+          {books.map((b, i) => (
+            <BookCard
+              key={`${b.title}-${b.author ?? ""}`}
+              book={b}
+              priority={i < 6}
+            />
           ))}
         </section>
 

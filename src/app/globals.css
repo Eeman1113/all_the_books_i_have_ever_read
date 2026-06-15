@@ -61,16 +61,16 @@ footer,
   z-index: 50;
 }
 
-/* Image placeholder shimmer */
+/* Image placeholder shimmer — grey */
 .book-cover-skel {
   background: linear-gradient(
     100deg,
-    #ece8e0 0%,
-    #f5f2ec 35%,
-    #ece8e0 70%
+    #e4e4e4 0%,
+    #f0f0f0 35%,
+    #e4e4e4 70%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.6s ease-in-out infinite;
+  animation: shimmer 1.4s ease-in-out infinite;
 }
 @keyframes shimmer {
   0% {

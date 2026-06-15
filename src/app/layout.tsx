@@ -34,6 +34,20 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${ole.variable} h-full antialiased`}
     >
+      <head>
+        <link
+          rel="preconnect"
+          href="https://covers.openlibrary.org"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://covers.openlibrary.org" />
+        <link
+          rel="preconnect"
+          href="https://openlibrary.org"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://openlibrary.org" />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
