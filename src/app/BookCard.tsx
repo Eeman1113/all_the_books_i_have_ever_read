@@ -74,9 +74,9 @@ export default function BookCard({
       className="group flex gap-6 sm:gap-9 will-change-transform"
     >
       <div
-        className="relative shrink-0 w-[120px] sm:w-[140px] aspect-[2/3] overflow-hidden bg-[#ececec]"
+        className="relative shrink-0 w-[130px] sm:w-[150px] aspect-[2/3] overflow-hidden bg-[#ececec]"
         style={{
-          boxShadow: "0 14px 24px -12px rgba(60, 45, 25, 0.45)",
+          boxShadow: "0 12px 22px -14px rgba(40, 40, 40, 0.35)",
         }}
       >
         <div ref={coverRef} className="absolute inset-0 will-change-transform">
@@ -87,7 +87,7 @@ export default function BookCard({
               alt={`${book.title} cover`}
               width={300}
               height={450}
-              className={`h-full w-full object-cover transition-opacity duration-300 ${
+              className={`h-full w-full object-contain transition-opacity duration-300 ${
                 loaded ? "opacity-100" : "opacity-0"
               }`}
               onLoad={() => setLoaded(true)}
