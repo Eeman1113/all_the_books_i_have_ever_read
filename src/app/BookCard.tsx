@@ -144,7 +144,7 @@ export default function BookCard({
       className="group flex flex-col sm:flex-row gap-5 sm:gap-9 will-change-transform"
     >
       <div
-        className="relative shrink-0 w-[170px] sm:w-[150px] max-w-full self-start transition-[box-shadow] duration-200 ease-out"
+        className="relative shrink-0 w-[170px] sm:w-[150px] max-w-full self-center sm:self-start transition-[box-shadow] duration-200 ease-out"
         style={{ boxShadow }}
       >
         <div ref={coverRef} className="will-change-transform">
