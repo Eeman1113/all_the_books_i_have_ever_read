@@ -179,10 +179,25 @@ export default function BookCard({
             />
           )}
           {showSkeleton && (
-            <div className="book-cover-skel w-full aspect-[2/3] flex items-end p-3">
-              <span className="font-ole text-black/50 text-base leading-tight">
-                {errored || !coverUrl ? book.title : ""}
-              </span>
+            <div
+              className={`w-full aspect-[2/3] flex flex-col items-center justify-center p-4 text-center ${
+                coverUrl && !errored
+                  ? "book-cover-skel"
+                  : "bg-[#ececec]"
+              }`}
+            >
+              {(errored || !coverUrl) && (
+                <>
+                  <span className="font-ole text-black/55 text-lg leading-tight">
+                    {book.title}
+                  </span>
+                  {!coverUrl && (
+                    <span className="mt-2 font-sans text-[0.65rem] uppercase tracking-[0.18em] text-black/35">
+                      no cover yet
+                    </span>
+                  )}
+                </>
+              )}
             </div>
           )}
         </div>
