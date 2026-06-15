@@ -197,7 +197,12 @@ export default function BookCard({
           </span>
           <Button
             variant="secondary"
-            style={{ backgroundColor: palette.bg, color: palette.text }}
+            className="font-bold h-auto py-1.5 px-4 text-[0.9rem]"
+            style={{
+              backgroundColor: palette.bg,
+              color: palette.text,
+              borderRadius: "9999px",
+            }}
           >
             {cat}
           </Button>
