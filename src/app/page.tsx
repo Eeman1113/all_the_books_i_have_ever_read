@@ -15,30 +15,30 @@ export default function Home() {
     const tl = gsap.timeline();
     tl.from(headerRef.current, {
       autoAlpha: 0,
-      y: 24,
-      duration: 0.9,
-      ease: "power3.out",
+      y: 14,
+      duration: 0.32,
+      ease: "power2.out",
     })
       .from(
         subRef.current,
         {
           autoAlpha: 0,
-          y: 14,
-          duration: 0.7,
-          ease: "power3.out",
+          y: 8,
+          duration: 0.26,
+          ease: "power2.out",
         },
-        "-=0.5",
+        "-=0.18",
       )
       .from(
         gridRef.current?.children ?? [],
         {
           autoAlpha: 0,
-          y: 28,
-          duration: 0.7,
-          ease: "power3.out",
-          stagger: 0.04,
+          y: 14,
+          duration: 0.28,
+          ease: "power2.out",
+          stagger: 0.012,
         },
-        "-=0.3",
+        "-=0.12",
       );
   }, []);
 

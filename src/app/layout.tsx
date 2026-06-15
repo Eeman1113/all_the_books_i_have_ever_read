@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Ole } from "next/font/google";
-import { FallingPattern } from "@/components/ui/falling-pattern";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -49,19 +48,7 @@ export default function RootLayout({
         />
         <link rel="dns-prefetch" href="https://openlibrary.org" />
       </head>
-      <body className="min-h-full flex flex-col">
-        <div
-          aria-hidden="true"
-          className="fixed inset-0 z-0 pointer-events-none"
-        >
-          <FallingPattern
-            color="var(--accent)"
-            backgroundColor="var(--background)"
-            className="h-screen w-full [mask-image:radial-gradient(ellipse_at_center,transparent_0%,var(--background)_80%)]"
-          />
-        </div>
-        {children}
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

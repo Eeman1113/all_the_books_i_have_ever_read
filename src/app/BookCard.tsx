@@ -95,13 +95,13 @@ export default function BookCard({
   const onEnter = () => {
     setHovered(true);
     if (cardRef.current) {
-      gsap.to(cardRef.current, { y: -4, duration: 0.55, ease: "power3.out" });
+      gsap.to(cardRef.current, { y: -4, duration: 0.22, ease: "power2.out" });
     }
     if (coverRef.current) {
       gsap.to(coverRef.current, {
         scale: 1.03,
-        duration: 0.7,
-        ease: "power3.out",
+        duration: 0.25,
+        ease: "power2.out",
       });
     }
     if (!glowColor && imgRef.current && loaded) {
@@ -113,13 +113,13 @@ export default function BookCard({
   const onLeave = () => {
     setHovered(false);
     if (cardRef.current) {
-      gsap.to(cardRef.current, { y: 0, duration: 0.6, ease: "power3.out" });
+      gsap.to(cardRef.current, { y: 0, duration: 0.25, ease: "power2.out" });
     }
     if (coverRef.current) {
       gsap.to(coverRef.current, {
         scale: 1,
-        duration: 0.65,
-        ease: "power3.out",
+        duration: 0.28,
+        ease: "power2.out",
       });
     }
   };
@@ -144,7 +144,7 @@ export default function BookCard({
       className="group flex flex-col sm:flex-row gap-5 sm:gap-9 will-change-transform"
     >
       <div
-        className="relative shrink-0 w-[170px] sm:w-[150px] max-w-full self-start transition-[box-shadow] duration-500"
+        className="relative shrink-0 w-[170px] sm:w-[150px] max-w-full self-start transition-[box-shadow] duration-200 ease-out"
         style={{ boxShadow }}
       >
         <div ref={coverRef} className="will-change-transform">
@@ -157,7 +157,7 @@ export default function BookCard({
               width={300}
               height={450}
               crossOrigin="anonymous"
-              className={`transition-opacity duration-500 ${
+              className={`transition-opacity duration-200 ${
                 loaded
                   ? "block w-full h-auto opacity-100"
                   : "absolute inset-0 h-full w-full opacity-0"
