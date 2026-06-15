@@ -83,7 +83,7 @@ export default function Home() {
               playsInline
               preload="metadata"
               poster=""
-              className="absolute bottom-0 -left-[28%] sm:-left-[38%] w-[58%] sm:w-[64%] h-auto z-0"
+              className="absolute bottom-0 -left-[14%] sm:-left-[22%] w-[58%] sm:w-[64%] h-auto z-0"
             >
               <source src="cat.webm" type="video/webm" />
               <source src="cat.mp4" type="video/mp4" />
