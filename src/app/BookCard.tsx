@@ -3,43 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import type { Book } from "./books";
+import covers from "./covers.json";
 import { Button } from "@/components/ui/button";
 
-const COVER_CACHE_KEY = "bookify:covers:v2";
+const coverMap = covers as Record<string, string | null>;
 
-type CoverCache = Record<string, string | null>;
-
-function readCache(): CoverCache {
-  if (typeof window === "undefined") return {};
-  try {
-    return JSON.parse(localStorage.getItem(COVER_CACHE_KEY) || "{}");
-  } catch {
-    return {};
-  }
-}
-
-function writeCache(cache: CoverCache) {
-  if (typeof window === "undefined") return;
-  try {
-    localStorage.setItem(COVER_CACHE_KEY, JSON.stringify(cache));
-  } catch {
-    /* quota — ignore */
-  }
-}
-
-async function fetchCover(book: Book): Promise<string | null> {
-  const query = book.query || `${book.title} ${book.author ?? ""}`.trim();
-  const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(
-    query,
-  )}&fields=cover_i&limit=1`;
-  const res = await fetch(url);
-  if (!res.ok) return null;
-  const data = await res.json();
-  const doc = data?.docs?.[0];
-  if (doc?.cover_i) {
-    return `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`;
-  }
-  return null;
+function coverFor(book: Book): string | null {
+  return coverMap[`${book.title}|${book.author ?? ""}`] ?? null;
 }
 
 export default function BookCard({
@@ -51,34 +21,9 @@ export default function BookCard({
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const coverRef = useRef<HTMLDivElement>(null);
-  const imgWrapRef = useRef<HTMLDivElement>(null);
-  const [coverUrl, setCoverUrl] = useState<string | null>(null);
+  const coverUrl = coverFor(book);
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    const cache = readCache();
-    const key = `${book.title}|${book.author ?? ""}`;
-    if (key in cache) {
-      setCoverUrl(cache[key]);
-      return;
-    }
-    fetchCover(book)
-      .then((url) => {
-        if (cancelled) return;
-        cache[key] = url;
-        writeCache(cache);
-        setCoverUrl(url);
-      })
-      .catch(() => {
-        if (cancelled) return;
-        setCoverUrl(null);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [book]);
 
   useEffect(() => {
     const card = cardRef.current;
@@ -120,16 +65,12 @@ export default function BookCard({
       className="group flex gap-5 sm:gap-6 will-change-transform"
     >
       <div
-        ref={imgWrapRef}
         className="relative shrink-0 w-[120px] sm:w-[140px] aspect-[2/3] overflow-hidden bg-[#ececec]"
         style={{
           boxShadow: "0 14px 24px -12px rgba(60, 45, 25, 0.45)",
         }}
       >
-        <div
-          ref={coverRef}
-          className="absolute inset-0 will-change-transform"
-        >
+        <div ref={coverRef} className="absolute inset-0 will-change-transform">
           {coverUrl && !errored ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -150,7 +91,7 @@ export default function BookCard({
           {showSkeleton && (
             <div className="absolute inset-0 book-cover-skel flex items-end p-3">
               <span className="font-ole text-black/50 text-base leading-tight">
-                {errored || coverUrl === null ? book.title : ""}
+                {errored || !coverUrl ? book.title : ""}
               </span>
             </div>
           )}
