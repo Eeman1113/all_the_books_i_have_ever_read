@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="mx-auto w-full max-w-6xl px-5 sm:px-8 pt-16 sm:pt-24 pb-24">
+      <main className="mx-auto w-full max-w-6xl px-6 sm:px-10 pt-20 sm:pt-28 pb-28 sm:pb-36">
         <header ref={headerRef} className="flex flex-col items-center text-center">
           <h1 className="font-ole text-[var(--foreground)] leading-[1.05] text-[2.6rem] sm:text-[4.2rem] md:text-[5rem] tracking-tight">
             all the books i have ever read
@@ -59,7 +59,7 @@ export default function Home() {
 
         <section
           ref={gridRef}
-          className="mt-14 sm:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7"
+          className="mt-20 sm:mt-28 grid grid-cols-1 md:grid-cols-2 gap-x-10 sm:gap-x-16 lg:gap-x-20 gap-y-14 sm:gap-y-20"
         >
           {books.map((b, i) => (
             <BookCard

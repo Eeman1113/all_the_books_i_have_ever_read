@@ -62,7 +62,7 @@ export default function BookCard({
   return (
     <article
       ref={cardRef}
-      className="group flex gap-5 sm:gap-6 will-change-transform"
+      className="group flex gap-6 sm:gap-9 will-change-transform"
     >
       <div
         className="relative shrink-0 w-[120px] sm:w-[140px] aspect-[2/3] overflow-hidden bg-[#ececec]"
@@ -98,19 +98,19 @@ export default function BookCard({
         </div>
       </div>
 
-      <div className="flex flex-col min-w-0">
-        <h3 className="font-sans text-[1.05rem] sm:text-[1.15rem] font-semibold tracking-tight text-[var(--foreground)] leading-snug">
+      <div className="flex flex-col min-w-0 flex-1">
+        <h3 className="font-sans text-[1.1rem] sm:text-[1.2rem] font-semibold tracking-tight text-[var(--foreground)] leading-snug">
           {book.title}
         </h3>
         {book.author && (
-          <p className="mt-0.5 text-[0.78rem] sm:text-[0.82rem] text-[var(--muted)] font-medium tracking-wide uppercase">
+          <p className="mt-1.5 text-[0.78rem] sm:text-[0.82rem] text-[var(--muted)] font-medium tracking-wide uppercase">
             {book.author}
           </p>
         )}
-        <p className="mt-3 text-[0.92rem] sm:text-[0.95rem] leading-relaxed text-[var(--foreground)]/85">
+        <p className="mt-5 sm:mt-6 text-[0.92rem] sm:text-[0.95rem] leading-[1.7] text-[var(--foreground)]/85">
           {book.synopsis}
         </p>
-        <div className="mt-4">
+        <div className="mt-auto pt-7 sm:pt-8">
           <Button variant="secondary">{book.whenRead}</Button>
         </div>
       </div>
