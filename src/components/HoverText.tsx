@@ -23,8 +23,7 @@ function pickColour() {
   return PALETTE[Math.floor(Math.random() * PALETTE.length)];
 }
 
-function splashLetter(e: React.MouseEvent<HTMLSpanElement>) {
-  const el = e.currentTarget;
+function splashAt(el: HTMLSpanElement) {
   el.style.transition = "none";
   el.style.color = pickColour();
   requestAnimationFrame(() => {
@@ -33,6 +32,14 @@ function splashLetter(e: React.MouseEvent<HTMLSpanElement>) {
       el.style.color = "";
     });
   });
+}
+
+function onLetterEnter(e: React.MouseEvent<HTMLSpanElement>) {
+  splashAt(e.currentTarget);
+}
+
+function onLetterTouch(e: React.TouchEvent<HTMLSpanElement>) {
+  splashAt(e.currentTarget);
 }
 
 const SPAN_STYLE: React.CSSProperties = { transition: "color 1.6s ease-out" };
@@ -63,7 +70,8 @@ export function HoverText({ children }: { children: string }) {
     out.push(
       <span
         key={key++}
-        onMouseEnter={splashLetter}
+        onMouseEnter={onLetterEnter}
+        onTouchStart={onLetterTouch}
         style={SPAN_STYLE}
       >
         {c}

@@ -48,14 +48,14 @@ export default function Home() {
 
   return (
     <>
-      <main className="mx-auto w-full max-w-6xl px-5 sm:px-10 pt-14 sm:pt-28 pb-0">
+      <main className="mx-auto w-full max-w-6xl px-4 sm:px-10 pt-12 sm:pt-28 pb-0">
         <header ref={headerRef} className="flex flex-col items-center text-center">
-          <h1 className="font-ole text-[var(--foreground)] leading-[1.05] text-[2.8rem] sm:text-[5.4rem] md:text-[6.5rem] tracking-tight select-none">
+          <h1 className="font-ole text-[var(--foreground)] leading-[1.05] text-[2.4rem] sm:text-[5.4rem] md:text-[6.5rem] tracking-tight select-none break-words max-w-full">
             <HoverText>{TITLE}</HoverText>
           </h1>
           <p
             ref={subRef}
-            className="mt-3 sm:mt-5 max-w-2xl font-sans text-[var(--muted)] text-base sm:text-xl italic px-4"
+            className="mt-3 sm:mt-5 max-w-2xl font-sans text-[var(--muted)] text-sm sm:text-xl italic px-2"
           >
             <HoverText>{SUBTITLE}</HoverText>
           </p>

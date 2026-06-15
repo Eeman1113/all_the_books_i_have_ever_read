@@ -216,7 +216,7 @@ export default function BookCard({
         <p className="mt-4 sm:mt-6 text-[0.94rem] sm:text-[0.95rem] leading-[1.65] sm:leading-[1.7] text-[var(--foreground)]/85">
           <HoverText>{book.synopsis}</HoverText>
         </p>
-        <div className="mt-6 sm:mt-auto sm:pt-8 flex items-center gap-2 whitespace-nowrap">
+        <div className="mt-6 sm:mt-auto sm:pt-8 flex items-center flex-wrap gap-x-2 gap-y-1.5">
           <span className="font-sans font-bold text-xs sm:text-sm text-[var(--foreground)] tracking-tight">
             <HoverText>I read this book when I was:</HoverText>
           </span>
