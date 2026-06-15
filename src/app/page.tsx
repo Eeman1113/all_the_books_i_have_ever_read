@@ -5,10 +5,34 @@ import gsap from "gsap";
 import { books } from "./books";
 import BookCard from "./BookCard";
 
+const TITLE = "all the books i have ever read";
+
 export default function Home() {
   const headerRef = useRef<HTMLElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  const splashTitle = () => {
+    const spans =
+      titleRef.current?.querySelectorAll<HTMLSpanElement>("[data-letter]");
+    if (!spans?.length) return;
+    // Snap to a unique vivid colour per letter, no transition…
+    spans.forEach((s) => {
+      s.style.transition = "none";
+      const hue = Math.floor(Math.random() * 360);
+      s.style.color = `hsl(${hue}, 88%, 55%)`;
+    });
+    // …then on the next frame, transition back to the default foreground.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        spans.forEach((s) => {
+          s.style.transition = "color 1.6s ease-out";
+          s.style.color = "";
+        });
+      });
+    });
+  };
 
   useEffect(() => {
     if (!headerRef.current) return;
@@ -46,8 +70,20 @@ export default function Home() {
     <>
       <main className="mx-auto w-full max-w-6xl px-5 sm:px-10 pt-14 sm:pt-28 pb-20 sm:pb-36">
         <header ref={headerRef} className="flex flex-col items-center text-center">
-          <h1 className="font-ole text-[var(--foreground)] leading-[1.05] text-[2.2rem] sm:text-[4.2rem] md:text-[5rem] tracking-tight">
-            all the books i have ever read
+          <h1
+            ref={titleRef}
+            onMouseEnter={splashTitle}
+            className="font-ole text-[var(--foreground)] leading-[1.05] text-[2.2rem] sm:text-[4.2rem] md:text-[5rem] tracking-tight cursor-default select-none"
+          >
+            {TITLE.split("").map((c, i) => (
+              <span
+                key={i}
+                data-letter
+                style={{ transition: "color 1.6s ease-out" }}
+              >
+                {c === " " ? " " : c}
+              </span>
+            ))}
           </h1>
           <p
             ref={subRef}
