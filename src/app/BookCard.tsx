@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import type { Book } from "./books";
 import covers from "./covers.json";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const coverMap = covers as Record<string, string | null>;
 
@@ -191,21 +191,16 @@ export default function BookCard({
         <p className="mt-4 sm:mt-6 text-[0.94rem] sm:text-[0.95rem] leading-[1.65] sm:leading-[1.7] text-[var(--foreground)]/85">
           {book.synopsis}
         </p>
-        <div className="mt-6 sm:mt-auto sm:pt-8 flex flex-col items-start gap-2">
-          <span className="font-sans font-bold text-[0.78rem] sm:text-[0.8rem] text-[var(--foreground)] tracking-tight">
+        <div className="mt-6 sm:mt-auto sm:pt-8 flex items-center gap-2 whitespace-nowrap">
+          <span className="font-sans font-bold text-xs sm:text-sm text-[var(--foreground)] tracking-tight">
             I read this book when I was:
           </span>
-          <Button
+          <Badge
             variant="secondary"
-            className="font-bold h-auto py-1.5 px-4 text-[0.9rem]"
-            style={{
-              backgroundColor: palette.bg,
-              color: palette.text,
-              borderRadius: "9999px",
-            }}
+            style={{ backgroundColor: palette.bg, color: palette.text }}
           >
             {cat}
-          </Button>
+          </Badge>
         </div>
       </div>
     </article>
