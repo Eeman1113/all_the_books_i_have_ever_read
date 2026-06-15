@@ -84,6 +84,7 @@ export default function Home() {
               preload="metadata"
               poster=""
               className="absolute bottom-0 -left-[6%] sm:-left-[12%] w-[58%] sm:w-[64%] h-auto z-0"
+              style={{ mixBlendMode: "multiply" }}
             >
               <source src="cat.webm" type="video/webm" />
               <source src="cat.mp4" type="video/mp4" />
