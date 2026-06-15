@@ -99,8 +99,7 @@ export default function BookCard({
     }
     if (coverRef.current) {
       gsap.to(coverRef.current, {
-        scale: 1.04,
-        rotate: -1.2,
+        scale: 1.03,
         duration: 0.7,
         ease: "power3.out",
       });
@@ -119,7 +118,6 @@ export default function BookCard({
     if (coverRef.current) {
       gsap.to(coverRef.current, {
         scale: 1,
-        rotate: 0,
         duration: 0.65,
         ease: "power3.out",
       });
@@ -143,10 +141,10 @@ export default function BookCard({
       ref={cardRef}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      className="group flex gap-6 sm:gap-9 will-change-transform"
+      className="group flex flex-col sm:flex-row gap-5 sm:gap-9 will-change-transform"
     >
       <div
-        className="relative shrink-0 w-[130px] sm:w-[150px] self-start transition-[box-shadow] duration-500"
+        className="relative shrink-0 w-[170px] sm:w-[150px] max-w-full self-start transition-[box-shadow] duration-500"
         style={{ boxShadow }}
       >
         <div ref={coverRef} className="will-change-transform">
@@ -159,11 +157,11 @@ export default function BookCard({
               width={300}
               height={450}
               crossOrigin="anonymous"
-              className={`transition-[filter,opacity] duration-500 ${
+              className={`transition-opacity duration-500 ${
                 loaded
                   ? "block w-full h-auto opacity-100"
                   : "absolute inset-0 h-full w-full opacity-0"
-              } ${hovered ? "grayscale" : "grayscale-0"}`}
+              }`}
               onLoad={() => setLoaded(true)}
               onError={() => setErrored(true)}
               loading={priority ? "eager" : "lazy"}
@@ -181,19 +179,19 @@ export default function BookCard({
         </div>
       </div>
 
-      <div className="flex flex-col min-w-0 flex-1">
-        <h3 className="font-sans text-[1.1rem] sm:text-[1.2rem] font-semibold tracking-tight text-[var(--foreground)] leading-snug">
+      <div className="flex flex-col min-w-0 flex-1 w-full">
+        <h3 className="font-sans text-[1.15rem] sm:text-[1.2rem] font-semibold tracking-tight text-[var(--foreground)] leading-snug">
           {book.title}
         </h3>
         {book.author && (
-          <p className="mt-1.5 text-[0.78rem] sm:text-[0.82rem] text-[var(--muted)] font-medium tracking-wide uppercase">
+          <p className="mt-1.5 text-[0.74rem] sm:text-[0.82rem] text-[var(--muted)] font-medium tracking-wide uppercase">
             {book.author}
           </p>
         )}
-        <p className="mt-5 sm:mt-6 text-[0.92rem] sm:text-[0.95rem] leading-[1.7] text-[var(--foreground)]/85">
+        <p className="mt-4 sm:mt-6 text-[0.94rem] sm:text-[0.95rem] leading-[1.65] sm:leading-[1.7] text-[var(--foreground)]/85">
           {book.synopsis}
         </p>
-        <div className="mt-auto pt-7 sm:pt-8 flex flex-col items-start gap-2">
+        <div className="mt-6 sm:mt-auto sm:pt-8 flex flex-col items-start gap-2">
           <span className="font-sans font-bold text-[0.78rem] sm:text-[0.8rem] text-[var(--foreground)] tracking-tight">
             I read this book when I was:
           </span>
