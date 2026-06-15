@@ -75,16 +75,30 @@ export default function Home() {
         </section>
 
         <div className="mt-8 sm:mt-12 flex justify-center select-none pointer-events-none">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="portal.png"
-            alt="A boy carrying a tall stack of books — books, the portal to another world"
-            width={722}
-            height={1107}
-            loading="lazy"
-            decoding="async"
-            className="block w-full max-w-[260px] sm:max-w-[320px] h-auto"
-          />
+          <div className="relative w-full max-w-[260px] sm:max-w-[320px]">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster=""
+              className="absolute bottom-0 -left-[55%] sm:-left-[65%] w-[60%] sm:w-[70%] h-auto z-0 rounded-md"
+            >
+              <source src="cat.webm" type="video/webm" />
+              <source src="cat.mp4" type="video/mp4" />
+            </video>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="portal.png"
+              alt="A boy carrying a tall stack of books — books, the portal to another world"
+              width={722}
+              height={1107}
+              loading="lazy"
+              decoding="async"
+              className="block relative z-10 w-full h-auto"
+            />
+          </div>
         </div>
       </main>
     </>
