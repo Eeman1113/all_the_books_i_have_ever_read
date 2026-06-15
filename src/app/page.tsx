@@ -118,6 +118,18 @@ export default function Home() {
           ))}
         </section>
 
+        <div className="mt-24 sm:mt-36 flex justify-center select-none pointer-events-none">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="portal.png"
+            alt="A boy carrying a tall stack of books — books, the portal to another world"
+            width={722}
+            height={1107}
+            loading="lazy"
+            decoding="async"
+            className="block w-full max-w-[260px] sm:max-w-[320px] h-auto"
+          />
+        </div>
       </main>
     </>
   );
