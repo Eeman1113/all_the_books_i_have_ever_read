@@ -156,7 +156,6 @@ export default function BookCard({
               alt={`${book.title} cover`}
               width={300}
               height={450}
-              crossOrigin="anonymous"
               className={`transition-opacity duration-200 ${
                 loaded
                   ? "block w-full h-auto opacity-100"
