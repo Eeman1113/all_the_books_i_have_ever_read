@@ -57,13 +57,6 @@ export default function Home() {
           >
             (at least the ones i can remember)
           </p>
-          <div className="mt-6 flex items-center gap-3 text-[var(--accent)]">
-            <span className="h-px w-10 bg-[var(--accent)]/50" />
-            <span className="text-xs uppercase tracking-[0.22em] font-semibold">
-              a personal shelf · {books.length} titles
-            </span>
-            <span className="h-px w-10 bg-[var(--accent)]/50" />
-          </div>
         </header>
 
         <section
@@ -75,19 +68,6 @@ export default function Home() {
           ))}
         </section>
 
-        <footer className="mt-20 text-center text-[var(--muted)] text-sm">
-          <p className="font-sans">
-            built with care · covers via{" "}
-            <a
-              href="https://openlibrary.org"
-              className="underline decoration-[var(--accent)]/60 underline-offset-4 hover:text-[var(--accent)]"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open Library
-            </a>
-          </p>
-        </footer>
       </main>
     </>
   );
