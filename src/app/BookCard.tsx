@@ -197,7 +197,12 @@ export default function BookCard({
           </span>
           <Badge
             variant="secondary"
-            style={{ backgroundColor: palette.bg, color: palette.text }}
+            style={{
+              backgroundColor: palette.bg,
+              color: palette.text,
+              fontSize: "0.875rem",
+              padding: "0.3rem 0.75rem",
+            }}
           >
             {cat}
           </Badge>

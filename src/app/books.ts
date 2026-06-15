@@ -5,6 +5,9 @@ export type Book = {
   whenRead: string;
   // optional explicit search query for the cover lookup
   query?: string;
+  // skip lookup and use this URL directly (for books OpenLibrary
+  // doesn't have — paste any public cover URL with CORS open)
+  coverUrl?: string;
 };
 
 export const books: Book[] = [
@@ -353,11 +356,10 @@ export const books: Book[] = [
   },
   {
     title: "12 Years My Messed-Up Love Story",
-    author: "Sudeep Nagarkar",
+    author: "Chetan Bhagat",
     synopsis:
       "A twelve-year on-and-off relationship told in messy, real-time pieces — friendship, distance, jealousy, and the long tail of first love.",
     whenRead: "Adult",
-    query: "12 Years My Messed Up Love Story Sudeep Nagarkar",
   },
   {
     title: "The Forty Rules of Love",
@@ -554,11 +556,10 @@ export const books: Book[] = [
   },
   {
     title: "Etee Tomar Maa",
-    author: "Sangeeta Bandyopadhyay",
+    author: "Sanjib Chattopadhyay",
     synopsis:
       "A Bengali novel of memory and motherhood — letters and silences from a woman to the child she could not raise.",
     whenRead: "Adult",
-    query: "Etee Tomar Maa Bengali novel",
   },
   {
     title: "Mahagatha",
@@ -678,6 +679,7 @@ export const books: Book[] = [
     synopsis:
       "A short, practical book on living and working with large language models as collaborators rather than tools or threats.",
     whenRead: "Adult",
+    coverUrl: "https://images.penguinrandomhouse.com/cover/9780593716717",
   },
   {
     title: "Mahabharata",

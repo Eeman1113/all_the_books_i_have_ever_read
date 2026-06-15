@@ -28,6 +28,7 @@ function parseBooks(src) {
       title: get("title"),
       author: get("author"),
       query: get("query"),
+      coverUrl: get("coverUrl"),
     };
   });
 }
@@ -42,12 +43,12 @@ async function withTimeout(promise, ms) {
   }
 }
 
-async function fetchCoverId(book) {
+async function fetchOpenLibraryCover(book) {
   const q = book.query || `${book.title} ${book.author ?? ""}`.trim();
   const url =
     "https://openlibrary.org/search.json?q=" +
     encodeURIComponent(q) +
-    "&fields=cover_i&limit=1";
+    "&fields=cover_i&limit=5";
   for (let attempt = 1; attempt <= RETRIES; attempt++) {
     try {
       const res = await withTimeout(
@@ -60,16 +61,56 @@ async function fetchCoverId(book) {
       );
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
-      const id = data?.docs?.[0]?.cover_i;
-      return id ?? null;
+      for (const doc of data?.docs ?? []) {
+        if (doc?.cover_i) {
+          return `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`;
+        }
+      }
+      return null;
     } catch (err) {
       if (attempt === RETRIES) {
-        console.warn(`  ✗ ${book.title}: ${err.message}`);
+        console.warn(`  ✗ ${book.title} (OL): ${err.message}`);
         return null;
       }
       await new Promise((r) => setTimeout(r, 500 * attempt));
     }
   }
+  return null;
+}
+
+async function fetchGoogleBooksCover(book) {
+  const parts = [`intitle:"${book.title}"`];
+  if (book.author) parts.push(`inauthor:"${book.author}"`);
+  const url =
+    "https://www.googleapis.com/books/v1/volumes?q=" +
+    encodeURIComponent(parts.join(" ")) +
+    "&maxResults=5";
+  try {
+    const res = await withTimeout(
+      (signal) => fetch(url, { signal }),
+      TIMEOUT_MS,
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    for (const item of data?.items ?? []) {
+      const links = item?.volumeInfo?.imageLinks;
+      const raw = links?.thumbnail || links?.smallThumbnail;
+      if (raw) {
+        // upgrade http -> https, drop the curled-edge effect
+        return raw.replace(/^http:/, "https:").replace(/&edge=curl/g, "");
+      }
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+async function fetchCoverUrl(book) {
+  const ol = await fetchOpenLibraryCover(book);
+  if (ol) return ol;
+  const gb = await fetchGoogleBooksCover(book);
+  if (gb) return gb;
   return null;
 }
 
@@ -106,16 +147,20 @@ async function main() {
   let resolved = 0;
   const results = await pool(books, CONCURRENCY, async (book) => {
     const k = key(book);
+    // Manual override always wins so we can hand-paste URLs for books
+    // OpenLibrary doesn't have.
+    if (book.coverUrl) {
+      resolved++;
+      process.stdout.write(`\r  ${resolved}/${books.length} (override)`);
+      return [k, book.coverUrl];
+    }
     // Reuse already-resolved URLs to keep reruns fast and avoid API hits.
     if (existing[k]) {
       resolved++;
       process.stdout.write(`\r  ${resolved}/${books.length} (cached)`);
       return [k, existing[k]];
     }
-    const id = await fetchCoverId(book);
-    const url = id
-      ? `https://covers.openlibrary.org/b/id/${id}-M.jpg`
-      : null;
+    const url = await fetchCoverUrl(book);
     resolved++;
     process.stdout.write(`\r  ${resolved}/${books.length}`);
     return [k, url];
