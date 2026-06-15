@@ -21,6 +21,57 @@ function ageCategory(whenRead: string): AgeCategory {
   return "Kid";
 }
 
+const tagPalette: Record<AgeCategory, { bg: string; text: string }> = {
+  Kid: { bg: "#fef3c7", text: "#92400e" },
+  Teen: { bg: "#d1fae5", text: "#065f46" },
+  Adult: { bg: "#ede9fe", text: "#5b21b6" },
+};
+
+const FALLBACK_GLOW = "rgba(138, 106, 58, 0.45)";
+const BASE_SHADOW = "0 12px 22px -14px rgba(40, 40, 40, 0.35)";
+
+function extractDominantColor(img: HTMLImageElement): string | null {
+  const canvas = document.createElement("canvas");
+  const w = 50;
+  const h = 50;
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+  try {
+    ctx.drawImage(img, 0, 0, w, h);
+    const { data } = ctx.getImageData(0, 0, w, h);
+    let r = 0;
+    let g = 0;
+    let b = 0;
+    let count = 0;
+    for (let i = 0; i < data.length; i += 4) {
+      const lum = (data[i] + data[i + 1] + data[i + 2]) / 3;
+      // skip near-white/near-black so the glow picks up actual cover hues
+      if (lum < 25 || lum > 230) continue;
+      r += data[i];
+      g += data[i + 1];
+      b += data[i + 2];
+      count++;
+    }
+    if (count === 0) {
+      for (let i = 0; i < data.length; i += 4) {
+        r += data[i];
+        g += data[i + 1];
+        b += data[i + 2];
+        count++;
+      }
+    }
+    if (count === 0) return null;
+    r = Math.round(r / count);
+    g = Math.round(g / count);
+    b = Math.round(b / count);
+    return `rgba(${r}, ${g}, ${b}, 0.7)`;
+  } catch {
+    return null;
+  }
+}
+
 export default function BookCard({
   book,
   priority = false,
@@ -28,77 +79,100 @@ export default function BookCard({
   book: Book;
   priority?: boolean;
 }) {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLElement>(null);
   const coverRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
   const coverUrl = coverFor(book);
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [glowColor, setGlowColor] = useState<string | null>(null);
 
-  useEffect(() => {
-    const card = cardRef.current;
-    const cover = coverRef.current;
-    if (!card || !cover) return;
+  const cat = ageCategory(book.whenRead);
+  const palette = tagPalette[cat];
+  const showSkeleton = !coverUrl || !loaded || errored;
 
-    const onEnter = () => {
-      gsap.to(card, { y: -4, duration: 0.55, ease: "power3.out" });
-      gsap.to(cover, {
+  const onEnter = () => {
+    setHovered(true);
+    if (cardRef.current) {
+      gsap.to(cardRef.current, { y: -4, duration: 0.55, ease: "power3.out" });
+    }
+    if (coverRef.current) {
+      gsap.to(coverRef.current, {
         scale: 1.04,
         rotate: -1.2,
         duration: 0.7,
         ease: "power3.out",
       });
-    };
-    const onLeave = () => {
-      gsap.to(card, { y: 0, duration: 0.6, ease: "power3.out" });
-      gsap.to(cover, {
+    }
+    if (!glowColor && imgRef.current && loaded) {
+      const c = extractDominantColor(imgRef.current);
+      if (c) setGlowColor(c);
+    }
+  };
+
+  const onLeave = () => {
+    setHovered(false);
+    if (cardRef.current) {
+      gsap.to(cardRef.current, { y: 0, duration: 0.6, ease: "power3.out" });
+    }
+    if (coverRef.current) {
+      gsap.to(coverRef.current, {
         scale: 1,
         rotate: 0,
         duration: 0.65,
         ease: "power3.out",
       });
-    };
+    }
+  };
 
-    card.addEventListener("mouseenter", onEnter);
-    card.addEventListener("mouseleave", onLeave);
+  useEffect(() => {
     return () => {
-      card.removeEventListener("mouseenter", onEnter);
-      card.removeEventListener("mouseleave", onLeave);
+      if (cardRef.current) gsap.killTweensOf(cardRef.current);
+      if (coverRef.current) gsap.killTweensOf(coverRef.current);
     };
   }, []);
 
-  const showSkeleton = !coverUrl || !loaded || errored;
+  const glow = glowColor ?? FALLBACK_GLOW;
+  const boxShadow = hovered
+    ? `${BASE_SHADOW}, 0 0 48px 6px ${glow}`
+    : BASE_SHADOW;
 
   return (
     <article
       ref={cardRef}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
       className="group flex gap-6 sm:gap-9 will-change-transform"
     >
       <div
-        className="relative shrink-0 w-[130px] sm:w-[150px] aspect-[2/3] overflow-hidden bg-[#ececec]"
-        style={{
-          boxShadow: "0 12px 22px -14px rgba(40, 40, 40, 0.35)",
-        }}
+        className="relative shrink-0 w-[130px] sm:w-[150px] self-start transition-[box-shadow] duration-500"
+        style={{ boxShadow }}
       >
-        <div ref={coverRef} className="absolute inset-0 will-change-transform">
-          {coverUrl && !errored ? (
+        <div ref={coverRef} className="will-change-transform">
+          {coverUrl && !errored && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
+              ref={imgRef}
               src={coverUrl}
               alt={`${book.title} cover`}
               width={300}
               height={450}
-              className={`h-full w-full object-contain transition-opacity duration-300 ${
-                loaded ? "opacity-100" : "opacity-0"
-              }`}
+              crossOrigin="anonymous"
+              className={`transition-[filter,opacity] duration-500 ${
+                loaded
+                  ? "block w-full h-auto opacity-100"
+                  : "absolute inset-0 h-full w-full opacity-0"
+              } ${hovered ? "grayscale" : "grayscale-0"}`}
               onLoad={() => setLoaded(true)}
               onError={() => setErrored(true)}
               loading={priority ? "eager" : "lazy"}
               decoding="async"
               fetchPriority={priority ? "high" : "auto"}
             />
-          ) : null}
+          )}
           {showSkeleton && (
-            <div className="absolute inset-0 book-cover-skel flex items-end p-3">
+            <div className="book-cover-skel w-full aspect-[2/3] flex items-end p-3">
               <span className="font-ole text-black/50 text-base leading-tight">
                 {errored || !coverUrl ? book.title : ""}
               </span>
@@ -123,7 +197,12 @@ export default function BookCard({
           <span className="font-sans font-bold text-[0.78rem] sm:text-[0.8rem] text-[var(--foreground)] tracking-tight">
             I read this book when I was:
           </span>
-          <Button variant="secondary">{ageCategory(book.whenRead)}</Button>
+          <Button
+            variant="secondary"
+            style={{ backgroundColor: palette.bg, color: palette.text }}
+          >
+            {cat}
+          </Button>
         </div>
       </div>
     </article>
