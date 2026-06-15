@@ -29,6 +29,16 @@ body {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Text selection — pastel violet bg, deep violet ink */
+::selection {
+  background-color: #ddd6fe;
+  color: #5b21b6;
+}
+::-moz-selection {
+  background-color: #ddd6fe;
+  color: #5b21b6;
+}
+
 /* Hide scrollbar but keep scrolling */
 html {
   scrollbar-width: none; /* Firefox */
