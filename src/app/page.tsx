@@ -80,7 +80,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="mx-auto w-full max-w-6xl px-5 sm:px-10 pt-14 sm:pt-28 pb-6 sm:pb-10">
+      <main className="mx-auto w-full max-w-6xl px-5 sm:px-10 pt-14 sm:pt-28 pb-0">
         <header ref={headerRef} className="flex flex-col items-center text-center">
           <h1 className="font-ole text-[var(--foreground)] leading-[1.05] text-[2.2rem] sm:text-[4.2rem] md:text-[5rem] tracking-tight select-none">
             {TITLE.split("").map((c, i) => {
