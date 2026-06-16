@@ -74,31 +74,45 @@ export default function Home() {
           ))}
         </section>
 
-        <div className="mt-8 sm:mt-12 flex justify-center select-none pointer-events-none">
-          <div className="relative w-full max-w-[260px] sm:max-w-[320px]">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster=""
-              className="absolute bottom-0 -left-[6%] sm:-left-[12%] w-[58%] sm:w-[64%] h-auto z-0"
-              style={{ mixBlendMode: "multiply" }}
-            >
-              <source src="cat.webm" type="video/webm" />
-              <source src="cat.mp4" type="video/mp4" />
-            </video>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="portal.png"
-              alt="A boy carrying a tall stack of books — books, the portal to another world"
-              width={722}
-              height={1107}
-              loading="lazy"
-              decoding="async"
-              className="block relative z-10 w-full h-auto"
-            />
+        <div className="relative mt-8 sm:mt-12">
+          {/* Soft floor that fades the page bg #faf8f5 down into the
+              video's native white #fdfdfd. Full-viewport-width so the
+              gradient doesn't have visible seams at the page gutters.
+              Sits in source order BEFORE the content, so it renders
+              underneath without needing z-index. */}
+          <div
+            aria-hidden
+            className="absolute left-1/2 -translate-x-1/2 w-screen -top-48 sm:-top-72 bottom-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to bottom, #faf8f5 0%, #faf8f5 12%, #fdfdfd 100%)",
+            }}
+          />
+          <div className="relative flex justify-center select-none pointer-events-none">
+            <div className="relative w-full max-w-[260px] sm:max-w-[320px]">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster=""
+                className="absolute bottom-0 -left-[6%] sm:-left-[12%] w-[58%] sm:w-[64%] h-auto z-0"
+              >
+                <source src="cat.webm" type="video/webm" />
+                <source src="cat.mp4" type="video/mp4" />
+              </video>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="portal.png"
+                alt="A boy carrying a tall stack of books — books, the portal to another world"
+                width={722}
+                height={1107}
+                loading="lazy"
+                decoding="async"
+                className="block relative z-10 w-full h-auto"
+              />
+            </div>
           </div>
         </div>
       </main>
