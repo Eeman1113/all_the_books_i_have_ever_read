@@ -31,6 +31,26 @@ const tagPalette: Record<AgeCategory, { bg: string; text: string }> = {
 const FALLBACK_GLOW = "rgba(138, 106, 58, 0.45)";
 const BASE_SHADOW = "0 12px 22px -14px rgba(40, 40, 40, 0.35)";
 
+function Stars({ rating }: { rating: number }) {
+  const pct = Math.max(0, Math.min(5, rating)) * 20;
+  return (
+    <span
+      className="relative inline-block leading-none select-none"
+      aria-label={`Rating: ${rating} out of 5`}
+      title={`${rating} / 5`}
+    >
+      <span className="text-black/15 tracking-[0.08em]">★★★★★</span>
+      <span
+        className="absolute inset-0 overflow-hidden text-[#FFBF00] tracking-[0.08em]"
+        style={{ width: `${pct}%` }}
+        aria-hidden
+      >
+        ★★★★★
+      </span>
+    </span>
+  );
+}
+
 function extractDominantColor(img: HTMLImageElement): string | null {
   const canvas = document.createElement("canvas");
   const w = 50;
@@ -212,6 +232,14 @@ export default function BookCard({
           <p className="mt-1.5 text-[0.74rem] sm:text-[0.82rem] text-[var(--muted)] font-medium tracking-wide uppercase">
             <HoverText>{book.author}</HoverText>
           </p>
+        )}
+        {typeof book.rating === "number" && (
+          <div className="mt-2.5 flex items-center gap-2">
+            <Stars rating={book.rating} />
+            <span className="font-sans text-[0.72rem] sm:text-[0.78rem] text-[var(--muted)] tabular-nums">
+              {book.rating} / 5
+            </span>
+          </div>
         )}
         <p className="mt-4 sm:mt-6 text-[0.94rem] sm:text-[0.95rem] leading-[1.65] sm:leading-[1.7] text-[var(--foreground)]/85">
           <HoverText>{book.synopsis}</HoverText>
