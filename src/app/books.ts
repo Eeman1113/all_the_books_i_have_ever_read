@@ -884,6 +884,8 @@ export const books: Book[] = [
       "A father and son sit by a fire while the wife dies in labour inside the hut. When she's gone, the money meant for her shroud goes on liquor and puris instead — Premchand's shortest, cruelest story.",
     whenRead: "Adult",
     query: "Kafan Premchand",
+    coverUrl:
+      "https://www.maplepress.co.in/cdn/shop/files/kafan_700x700.jpg?v=1685334251",
   },
   {
     title: "The Odyssey",
@@ -892,5 +894,7 @@ export const books: Book[] = [
       "Ten years after Troy, Odysseus tries to get home to Ithaca — and every sea god, cyclops and enchantress has a reason to keep him from it.",
     whenRead: "Adult",
     rating: 4.5,
+    coverUrl:
+      "https://cdn.penguin.co.uk/dam-assets/books/9780141192444/9780141192444-jacket-large.jpg",
   },
 ];
