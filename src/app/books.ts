@@ -884,8 +884,7 @@ export const books: Book[] = [
       "A father and son sit by a fire while the wife dies in labour inside the hut. When she's gone, the money meant for her shroud goes on liquor and puris instead — Premchand's shortest, cruelest story.",
     whenRead: "Adult",
     query: "Kafan Premchand",
-    coverUrl:
-      "https://www.maplepress.co.in/cdn/shop/files/kafan_700x700.jpg?v=1685334251",
+    coverUrl: "covers/kafan.jpg",
   },
   {
     title: "The Odyssey",
