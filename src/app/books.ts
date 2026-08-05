@@ -879,9 +879,9 @@ export const books: Book[] = [
   },
   {
     title: "कफ़न",
-    author: "Munshi Premchand",
+    author: "मुंशी प्रेमचंद",
     synopsis:
-      "A father and son sit by a fire while the wife dies in labour inside the hut. When she's gone, the money meant for her shroud goes on liquor and puris instead — Premchand's shortest, cruelest story.",
+      "बाप और बेटा अलाव के पास बैठे रहते हैं जबकि झोंपड़ी के अंदर बहू प्रसव में तड़प-तड़प कर मर जाती है। उसके जाने के बाद, कफ़न के लिए जुटाया गया पैसा शराब और पूड़ियों में उड़ जाता है — प्रेमचंद की सबसे छोटी, सबसे निर्मम कहानी।",
     whenRead: "Adult",
     query: "Kafan Premchand",
     coverUrl: "covers/kafan.jpg",
