@@ -877,4 +877,20 @@ export const books: Book[] = [
     whenRead: "Kid",
     rating: 3.75,
   },
+  {
+    title: "कफ़न",
+    author: "Munshi Premchand",
+    synopsis:
+      "A father and son sit by a fire while the wife dies in labour inside the hut. When she's gone, the money meant for her shroud goes on liquor and puris instead — Premchand's shortest, cruelest story.",
+    whenRead: "Adult",
+    query: "Kafan Premchand",
+  },
+  {
+    title: "The Odyssey",
+    author: "Homer",
+    synopsis:
+      "Ten years after Troy, Odysseus tries to get home to Ithaca — and every sea god, cyclops and enchantress has a reason to keep him from it.",
+    whenRead: "Adult",
+    rating: 4.5,
+  },
 ];
