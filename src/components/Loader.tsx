@@ -43,19 +43,14 @@ export default function Loader() {
       id="__loader"
       ref={rootRef}
       aria-hidden
-      className="fixed inset-0 flex items-center justify-center p-8 sm:p-12 bg-[var(--background)]"
+      className="fixed inset-0 flex items-center justify-center p-8 sm:p-12"
     >
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="loading.webp"
+        alt=""
         className="block w-[180px] sm:w-[220px] h-auto max-h-[70vh] object-contain"
-      >
-        <source src="loading.webm" type="video/webm" />
-        <source src="loading.mp4" type="video/mp4" />
-      </video>
+      />
     </div>
   );
 }
