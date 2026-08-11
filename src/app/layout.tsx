@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Ole } from "next/font/google";
 import "./globals.css";
-import Loader from "@/components/Loader";
+// import Loader from "@/components/Loader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,7 +50,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://openlibrary.org" />
       </head>
       <body className="min-h-full flex flex-col">
-        <Loader />
+        {/* <Loader /> */}
         {children}
       </body>
     </html>
