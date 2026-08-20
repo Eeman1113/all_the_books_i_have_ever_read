@@ -883,8 +883,29 @@ export const books: Book[] = [
     synopsis:
       "बाप और बेटा अलाव के पास बैठे रहते हैं जबकि झोंपड़ी के अंदर बहू प्रसव में तड़प-तड़प कर मर जाती है। उसके जाने के बाद, कफ़न के लिए जुटाया गया पैसा शराब और पूड़ियों में उड़ जाता है — प्रेमचंद की सबसे छोटी, सबसे निर्मम कहानी।",
     whenRead: "Adult",
+    rating: 5,
     query: "Kafan Premchand",
     coverUrl: "covers/kafan.jpg",
+  },
+  {
+    title: "ठाकुर का कुआँ और अन्य कहानियाँ",
+    author: "मुंशी प्रेमचंद",
+    synopsis:
+      "एकदा क्लासिक्स का संकलन — 'ठाकुर का कुआँ' से शुरू, जहाँ गंगी बीमार पति के लिए साफ़ पानी तक नहीं ला पाती क्योंकि कुआँ ठाकुर का है। जाति, पितृसत्ता और गाँव की चुप्पी पर प्रेमचंद की सबसे तीखी कहानियाँ एक जगह।",
+    whenRead: "Adult",
+    rating: 3.75,
+    query: "Thakur Ka Kuan Premchand Ekada",
+    coverUrl: "covers/thakur-ka-kuan.jpg",
+  },
+  {
+    title: "Heart Lamp",
+    author: "Banu Mushtaq",
+    synopsis:
+      "Twelve stories from three decades of writing in Kannada, translated by Deepa Bhasthi — Muslim women in southern India navigating marriage, faith, motherhood and small, unignorable acts of refusal. Won the International Booker.",
+    whenRead: "Adult",
+    rating: 4,
+    query: "Heart Lamp Banu Mushtaq Bhasthi",
+    coverUrl: "covers/heart-lamp.jpg",
   },
   {
     title: "The Odyssey",
